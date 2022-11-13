@@ -1,0 +1,135 @@
+/*  */
+header {
+  text-align: center;
+  color: brown;
+  background: linear-gradient(229deg, #50d990, #d4d054);
+  height: 12vh;
+  display: flex;
+  justify-content: center;
+}
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#TheGameScreen {
+  width: 80em;
+  height: 85vh;
+  position: relative;
+  margin-top: 0.3% ;
+  margin-right: 0.3%;
+}
+#blackScreen {
+  width: 100%;
+  background-color: black;
+  height: 85vh;
+  margin-right: 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+#CatchMe {
+    background: linear-gradient(229deg, #50d990, #d4d054);
+    color: #fff;
+  width: 7.3em;
+  height: 1.7em;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 0.5em;
+  cursor: pointer;
+  position: relative;
+  z-index: 999;
+  /* border: 1px solid #fff; */
+  box-shadow: 0 2px 4px #fff;
+
+ }
+
+#INFO {
+  width: 20em;
+  display: flex;
+  justify-content: center;
+  height: 85vh;
+  background: linear-gradient(229deg, #FBAB7E, #F7CE68);
+  margin-top: 0.3% ;
+
+}
+
+.wrapperinfo div {
+  width: 18em;
+
+  background-color: #fff;
+  color: black;
+  margin: 0.5em;
+  padding-left: 0.3em;
+}
+h2 {
+  margin-bottom: 0;
+}
+p {
+  margin-top: 0.3em;
+  font-weight: bold;
+  font-size: 30px;
+  color: green;
+  margin-bottom: 0;
+}
+h4 {
+  margin: 0;
+  color: green;
+}
+.TURNLEVEL1 {
+  animation-name: spin;
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.TURNLEVEL2 {
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.TURNLEVEL3 {
+  animation-name: spin;
+  animation-duration: 6000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.TURNLEVEL4 {
+  animation-name: spin;
+  animation-duration: 7000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.TURNLEVEL5 {
+  animation-name: spin;
+  animation-duration: 48000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#clickToStart {
+  cursor: pointer;
+  background: linear-gradient(229deg, #FBAB7E, #F7CE68);
+  border: none;
+  height: 10vh;
+  align-self: center;
+  border-radius: 5px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 2px rgba(236, 222, 222, 0.6);
+
+}
+#clickToStart:hover {
+  transform: scale(1.03);
+}
