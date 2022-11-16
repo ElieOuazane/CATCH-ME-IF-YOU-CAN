@@ -1,114 +1,134 @@
-/*  */
 header {
   text-align: center;
   color: brown;
   background: linear-gradient(229deg, #50d990, #d4d054);
-  height: 12vh;
+  height: 9vh;
   display: flex;
   justify-content: center;
+  width: 96.8%;
+  margin: auto;
+  margin-top: 1em;
 }
 main {
   width: 100%;
   display: flex;
   justify-content: center;
+  gap: 2em;
 }
-
 #TheGameScreen {
-  width: 80em;
-  height: 85vh;
   position: relative;
-  margin-top: 0.3% ;
-  margin-right: 0.3%;
+  width: 70em;
+  height: 82vh;
+  margin-top: 1em;
+  background-color: black;
 }
 #blackScreen {
   width: 100%;
-  background-color: black;
-  height: 85vh;
-  margin-right: 1em;
-  position: absolute;
-  top: 0;
-  left: 0;
+  height: 100%;
 
+  position: absolute;
 }
 #CatchMe {
-    background: linear-gradient(229deg, #50d990, #d4d054);
-    color: #fff;
+  background: linear-gradient(229deg, #50d990, #d4d054);
+  color: #fff;
   width: 7.3em;
   height: 1.7em;
   font-size: 20px;
   text-align: center;
-  padding-top: 0.5em;
   cursor: pointer;
-  position: relative;
+  position: absolute;
   z-index: 999;
-  /* border: 1px solid #fff; */
   box-shadow: 0 2px 4px #fff;
-
- }
-
-#INFO {
-  width: 20em;
-  display: flex;
-  justify-content: center;
-  height: 85vh;
-  background: linear-gradient(229deg, #FBAB7E, #F7CE68);
-  margin-top: 0.3% ;
-
 }
 
-.wrapperinfo div {
+.wrapper {
+  width: 20em;
+  height: 82vh;
+  background: linear-gradient(229deg, #fbab7e, #f7ce68);
+  margin-top: 1em;
+}
+#Main-div {
   width: 18em;
-
+  margin: auto;
   background-color: #fff;
-  color: black;
-  margin: 0.5em;
   padding-left: 0.3em;
 }
-h2 {
-  margin-bottom: 0;
+#wrapperinfo div {
+  width: 18em;
+  background-color: #fff;
+  color: black;
+  padding-left: 0.3em;
+  margin: auto;
+}
+h3 {
+  margin-bottom: 0.5em;
 }
 p {
-  margin-top: 0.3em;
+  margin-top: 0;
   font-weight: bold;
   font-size: 30px;
   color: green;
   margin-bottom: 0;
 }
-h4 {
-  margin: 0;
+.highscore {
+  margin-top: 0.1em;
+  font-size: 20px;
   color: green;
+  margin-bottom: 0;
+  position: relative;
 }
+span:after {
+  content: attr(TITLEpv);
+  position: absolute;
+  background: #000;
+  color: #fff;
+  left: 60%;
+  top: -35%;
+  font-size: 12px;
+  width: 100px;
+  padding: 5px;
+  border-radius: 4px;
+  transition: 300ms;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+  z-index: 999;
+}
+span:hover::after {
+  opacity: 1;
+  transform: translateY(5px);
+}
+
 .TURNLEVEL1 {
   animation-name: spin;
-  animation-duration: 4000ms;
+  animation-duration: 2000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 .TURNLEVEL2 {
   animation-name: spin;
-  animation-duration: 5000ms;
+  animation-duration: 1750ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 .TURNLEVEL3 {
   animation-name: spin;
-  animation-duration: 6000ms;
+  animation-duration: 1500ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 .TURNLEVEL4 {
   animation-name: spin;
-  animation-duration: 7000ms;
+  animation-duration: 1250ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 .TURNLEVEL5 {
   animation-name: spin;
-  animation-duration: 48000ms;
+  animation-duration: 1000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
-
 
 @keyframes spin {
   from {
@@ -121,15 +141,19 @@ h4 {
 
 #clickToStart {
   cursor: pointer;
-  background: linear-gradient(229deg, #FBAB7E, #F7CE68);
+  background: linear-gradient(229deg, #fbab7e, #f7ce68);
   border: none;
-  height: 10vh;
+  height: 7vh;
   align-self: center;
   border-radius: 5px;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 2px rgba(236, 222, 222, 0.6);
-
 }
 #clickToStart:hover {
   transform: scale(1.03);
+}
+#Main-div {
+  margin-top: 1em;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
