@@ -27,9 +27,9 @@ var SCORE = 0;
 var POINTTOTHENEXTLEVEL = 10;
 var LEVEL = 1;
 var MISSEDCLICKED = 0;
-var SUCCESSCLICKS;
+var SUCCESSCLICKS = 0;
 var SPEEDESCAPEANDROTATION = 0;
-var COUNTTIME = 60;
+var COUNTTIME = 20;
 
 let INFO = [
   {
@@ -85,38 +85,38 @@ HIGHSCORE.forEach(createHTMLforHigeScore);
 clickToStart.addEventListener("click", startTheGame);
 
 function startTheGame() {
-  SCORE = 0;
-  POINTTOTHENEXTLEVEL = 10;
-  LEVEL = 1;
-  MISSEDCLICKED = 0;
-  SUCCESSCLICKS;
-  SPEEDESCAPEANDROTATION = 0;
-  COUNTTIME = 60;
   confirm("ARE YOU READY TO START");
   CATCHME.className = "TURNLEVEL1";
   clickToStart.innerHTML = `<h1>CATCH ME IF YOU CAN!</h1>`;
   $("#CatchMe").mouseover(function () {
     setTimeout(() => {
-      $(this).css("left", "" + Math.random() * 1000 + "px");
-      $(this).css("top", "" + Math.random() * 600 + "px");
+      $(this).css("left", "" + Math.random() * 950 + "px");
+      $(this).css("top", "" + Math.random() * 550 + "px");
     }, 300 - SPEEDESCAPEANDROTATION);
   });
   timer = setInterval(function () {
     if (COUNTTIME == 0) {
+      COUNTTIME = 20;
+      SUCCESSCLICKS = 0;
+      SPEEDESCAPEANDROTATION = 0;
       clearInterval(timer);
       CATCHME.className = "CatchMe";
-      document.getElementById("Score").innerText = 0;
-      document.getElementById("PointToTheNextLevel").innerText = 10;
-      document.getElementById("Level").innerText = 1;
-      document.getElementById("MissedClicked").innerText = 0;
-      document.getElementById("Timer").innerText = 60;
-      $("#CatchMe")
-        .css("left", "" + 0 + "px")
-        .css("top", "" + 0 + "px");
       setTimeout(() => {
         alert(`Your Score is ${SCORE} -- Your Missed Clicks ${MISSEDCLICKED} `);
+        $("#CatchMe")
+          .css("left", "" + 0 + "px")
+          .css("top", "" + 0 + "px");
         CHECKHIGHSCORE();
         clickToStart.innerHTML = `<h1>CLICK TO START</h1>`;
+        SCORE = 0;
+        POINTTOTHENEXTLEVEL = 10;
+        LEVEL = 1;
+        MISSEDCLICKED = 0;
+        document.getElementById("Score").innerText = SCORE;
+        document.getElementById("PointToTheNextLevel").innerText =
+          POINTTOTHENEXTLEVEL;
+        document.getElementById("Level").innerText = LEVEL;
+        document.getElementById("MissedClicked").innerText = MISSEDCLICKED;
       }, 1500);
     }
     $("#Timer").html(COUNTTIME--);
@@ -216,7 +216,7 @@ function createHTMLforINFO(INFO) {
   valueMissedClicks.innerText = INFO.MissedClicks;
   valueMissedClicks.id = "MissedClicked";
   timerTitle.innerText = "TIMER:";
-  timerValue.innerText = 60;
+  timerValue.innerText = COUNTTIME;
   timerValue.id = "Timer";
   div1.append(titleScore, valueScore);
   div2.append(titlePointToTheNextLevel, valuetitlePointToTheNextLevel);

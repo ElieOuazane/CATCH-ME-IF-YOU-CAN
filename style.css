@@ -2,23 +2,23 @@ header {
   text-align: center;
   color: brown;
   background: linear-gradient(229deg, #50d990, #d4d054);
-  height: 9vh;
+  height: 8vh;
   display: flex;
   justify-content: center;
-  width: 96.8%;
+  width: 91em;
   margin: auto;
-  margin-top: 1em;
+  margin-top: 1.8em;
 }
 main {
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 2em;
+  gap: 1em;
 }
 #TheGameScreen {
   position: relative;
-  width: 70em;
-  height: 82vh;
+  width: 72em;
+  height: 80vh;
   margin-top: 1em;
   background-color: black;
 }
@@ -29,11 +29,12 @@ main {
   position: absolute;
 }
 #CatchMe {
-  background: linear-gradient(229deg, #50d990, #d4d054);
-  color: #fff;
+  background: linear-gradient(229deg, #2fc676, #cbc742);
+  color: rgb(14, 3, 97);
   width: 7.3em;
-  height: 1.7em;
-  font-size: 20px;
+  height: 1.8em;
+  font-size: 15px;
+  font-weight: bold;
   text-align: center;
   cursor: pointer;
   position: absolute;
@@ -42,31 +43,29 @@ main {
 }
 
 .wrapper {
-  width: 20em;
-  height: 82vh;
+  width: 18em;
+  height: 80vh;
   background: linear-gradient(229deg, #fbab7e, #f7ce68);
   margin-top: 1em;
 }
 #Main-div {
-    margin-top: 0em;
-
-  width: 18em;
+  width: 17em;
   margin: auto;
   background-color: #fff;
   padding-left: 0.3em;
 }
 #wrapperinfo div {
-  width: 18em;
+  width: 17em;
   background-color: #fff;
   color: black;
   padding-left: 0.3em;
   margin: auto;
 }
-#highscorestitle{
-    margin-top: 0.1em;
+#highscorestitle {
+  margin-top: 0.1em;
 }
 h3 {
-
+  margin-top: 0.8em;
   margin-bottom: 0.2em;
 }
 p {
@@ -88,7 +87,7 @@ span:after {
   position: absolute;
   background: #000;
   color: #fff;
-  left: 60%;
+  left: 58%;
   top: -35%;
   font-size: 12px;
   width: 100px;
