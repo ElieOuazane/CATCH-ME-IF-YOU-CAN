@@ -12,6 +12,12 @@ CATCHME.id = "CatchMe";
 CATCHME.innerHTML = "CATCH ME &#128539";
 section.append(theScreenGame, CATCHME);
 
+const mainDiv = document.querySelector("#Main-div");
+const title = document.createElement("h3");
+title.id = "highscorestitle";
+title.innerText = "HIGH SCROES:";
+mainDiv.append(title);
+
 const score = document.getElementById("Score");
 const PointToTheNextLevel = document.getElementById("PointToTheNextLevel");
 const level = document.getElementById("Level");
@@ -37,7 +43,7 @@ let INFO = [
 let HIGHSCORE = [
   {
     NAME: "elieouazane",
-    SCORE: 03,
+    SCORE: 50,
     DATE: "15/11/2022",
   },
   {
@@ -52,12 +58,12 @@ let HIGHSCORE = [
   },
   {
     NAME: "elieouazane",
-    SCORE: 40,
+    SCORE: 400,
     DATE: "08/08/2022",
   },
   {
     NAME: "elieouazane",
-    SCORE: 10,
+    SCORE: 40,
     DATE: "08/08/2022",
   },
 ];
@@ -76,13 +82,7 @@ INFO.forEach(createHTMLforINFO);
 
 HIGHSCORE.forEach(createHTMLforHigeScore);
 
-
 clickToStart.addEventListener("click", startTheGame);
-
-
-
-
-
 
 function startTheGame() {
   SCORE = 0;
@@ -91,7 +91,7 @@ function startTheGame() {
   MISSEDCLICKED = 0;
   SUCCESSCLICKS;
   SPEEDESCAPEANDROTATION = 0;
-  COUNTTIME = 10;
+  COUNTTIME = 60;
   confirm("ARE YOU READY TO START");
   CATCHME.className = "TURNLEVEL1";
   clickToStart.innerHTML = `<h1>CATCH ME IF YOU CAN!</h1>`;
@@ -117,7 +117,7 @@ function startTheGame() {
         alert(`Your Score is ${SCORE} -- Your Missed Clicks ${MISSEDCLICKED} `);
         CHECKHIGHSCORE();
         clickToStart.innerHTML = `<h1>CLICK TO START</h1>`;
-      }, 1000);
+      }, 1500);
     }
     $("#Timer").html(COUNTTIME--);
   }, 1000);
@@ -127,10 +127,6 @@ function startTheGame() {
   });
   CATCHME.addEventListener("click", UPDATEINFO);
 }
-
-
-
-
 
 function UPDATEINFO() {
   POINTTOTHENEXTLEVEL--;
@@ -146,8 +142,6 @@ function UPDATEINFO() {
   SPEEDESCAPEANDROTATION();
 }
 
-
-
 function CHECKHIGHSCORE() {
   const element = HIGHSCORE[4].SCORE;
   if (SCORE > element) {
@@ -158,11 +152,9 @@ function CHECKHIGHSCORE() {
     HIGHSCORE[4].SCORE = SCORE;
     HIGHSCORE[4].NAME = NAME;
     HIGHSCORE[4].DATE = getDATE;
-
     HIGHSCORE.sort((p1, p2) =>
       p1.SCORE > p2.SCORE ? -1 : p1.SCORE < p2.SCORE ? 1 : 0
     );
-
     localStorage.higeScore = JSON.stringify(HIGHSCORE);
   }
 }
@@ -188,8 +180,6 @@ function SPEEDESCAPEANDROTATION() {
     }, 1000);
   }
 }
-
-
 
 function TURNTOTHENEXTLEVEL() {
   POINTTOTHENEXTLEVEL = 10;
@@ -236,11 +226,7 @@ function createHTMLforINFO(INFO) {
   sections.append(div1, div2, div3, div4, div5);
 }
 
-
-
-
 function createHTMLforHigeScore(HIGHSCORE) {
-  const mainDiv = document.querySelector("#Main-div");
   const div = document.createElement("div");
   const p = document.createElement("p");
   p.className = "highscore";
