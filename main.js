@@ -29,7 +29,7 @@ var LEVEL = 1;
 var MISSEDCLICKED = 0;
 var SUCCESSCLICKS = 0;
 var SPEEDESCAPEANDROTATION = 0;
-var COUNTTIME = 20;
+var COUNTTIME = 60;
 
 let INFO = [
   {
@@ -86,7 +86,9 @@ clickToStart.addEventListener("click", startTheGame);
 
 function startTheGame() {
   confirm("ARE YOU READY TO START");
+
   CATCHME.className = "TURNLEVEL1";
+
   clickToStart.innerHTML = `<h1>CATCH ME IF YOU CAN!</h1>`;
   $("#CatchMe").mouseover(function () {
     setTimeout(() => {
@@ -96,7 +98,7 @@ function startTheGame() {
   });
   timer = setInterval(function () {
     if (COUNTTIME == 0) {
-      COUNTTIME = 20;
+      COUNTTIME = 60;
       SUCCESSCLICKS = 0;
       SPEEDESCAPEANDROTATION = 0;
       clearInterval(timer);
@@ -128,42 +130,14 @@ function startTheGame() {
   CATCHME.addEventListener("click", UPDATEINFO);
 }
 
-function UPDATEINFO() {
-  POINTTOTHENEXTLEVEL--;
-  SUCCESSCLICKS = 10 * LEVEL;
-  if (POINTTOTHENEXTLEVEL == 0) {
-    TURNTOTHENEXTLEVEL();
-  }
-  SCORE += SUCCESSCLICKS;
-  document.getElementById("Score").innerText = SCORE;
-  document.getElementById("PointToTheNextLevel").innerText =
-    POINTTOTHENEXTLEVEL;
-  document.getElementById("Level").innerText = LEVEL;
-  SPEEDESCAPEANDROTATION();
-}
-
-function CHECKHIGHSCORE() {
-  const element = HIGHSCORE[4].SCORE;
-  if (SCORE > element) {
-    var NAME = prompt("enter your name please");
-    var date = new Date();
-    var formats = { year: "numeric", month: "numeric", day: "numeric" };
-    var getDATE = date.toLocaleDateString("fr", formats);
-    HIGHSCORE[4].SCORE = SCORE;
-    HIGHSCORE[4].NAME = NAME;
-    HIGHSCORE[4].DATE = getDATE;
-    HIGHSCORE.sort((p1, p2) =>
-      p1.SCORE > p2.SCORE ? -1 : p1.SCORE < p2.SCORE ? 1 : 0
-    );
-    localStorage.higeScore = JSON.stringify(HIGHSCORE);
-  }
-}
-
-function SPEEDESCAPEANDROTATION() {
+function SPEEDESCAPEANDROTATIONE() {
   if (LEVEL == 2) {
+    console.log("hbgvfcdxs");
     CATCHME.className = "TURNLEVEL2";
     SPEEDESCAPEANDROTATION += 50;
   } else if (LEVEL == 3) {
+    console.log("hbgvfcdxs");
+
     CATCHME.className = "TURNLEVEL3";
     SPEEDESCAPEANDROTATION += 50;
   } else if (LEVEL == 4) {
@@ -184,6 +158,37 @@ function SPEEDESCAPEANDROTATION() {
 function TURNTOTHENEXTLEVEL() {
   POINTTOTHENEXTLEVEL = 10;
   LEVEL++;
+  SPEEDESCAPEANDROTATIONE();
+
+}
+function UPDATEINFO() {
+  POINTTOTHENEXTLEVEL--;
+  SUCCESSCLICKS = 10 * LEVEL;
+  if (POINTTOTHENEXTLEVEL == 0) {
+    TURNTOTHENEXTLEVEL();
+  }
+  SCORE += SUCCESSCLICKS;
+  document.getElementById("Score").innerText = SCORE;
+  document.getElementById("PointToTheNextLevel").innerText =
+    POINTTOTHENEXTLEVEL;
+  document.getElementById("Level").innerText = LEVEL;
+}
+
+function CHECKHIGHSCORE() {
+  const element = HIGHSCORE[4].SCORE;
+  if (SCORE > element) {
+    var NAME = prompt("enter your name please");
+    var date = new Date();
+    var formats = { year: "numeric", month: "numeric", day: "numeric" };
+    var getDATE = date.toLocaleDateString("fr", formats);
+    HIGHSCORE[4].SCORE = SCORE;
+    HIGHSCORE[4].NAME = NAME;
+    HIGHSCORE[4].DATE = getDATE;
+    HIGHSCORE.sort((p1, p2) =>
+      p1.SCORE > p2.SCORE ? -1 : p1.SCORE < p2.SCORE ? 1 : 0
+    );
+    localStorage.higeScore = JSON.stringify(HIGHSCORE);
+  }
 }
 
 function createHTMLforINFO(INFO) {
