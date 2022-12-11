@@ -47,26 +47,26 @@ let HIGHSCORE = [
   },
 ];
 
-const header = document.querySelector("header");
+const header = document.getElementById("header-content");
 const CLICKTOSTART = document.createElement("button");
 CLICKTOSTART.id = "clickToStart";
 CLICKTOSTART.innerHTML = `<h1>CLICK TO START</h1>`;
 header.append(CLICKTOSTART);
 
-const section = document.querySelector("#TheGameScreen");
-const THESCREENGAME = document.createElement("div");
-THESCREENGAME.id = "blackScreen";
+const MAIN = document.getElementById("main-content");
+const THEGAMESCREEN = document.createElement("div");
+THEGAMESCREEN.id = "blackScreen";
 const CATCHME = document.createElement("div");
 CATCHME.id = "CatchMe";
-CATCHME.innerHTML = "CATCH ME &#128539";
-section.append(THESCREENGAME, CATCHME);
+CATCHME.innerHTML = "<div>CATCH ME &#128539<div>";
+MAIN.append(CATCHME, THEGAMESCREEN);
 
-var sections = document.querySelector("#wrapperinfo");
+var sections = document.getElementById("info");
 
-const mainDiv = document.querySelector("#Main-div");
-const title = document.createElement("h3");
+const mainDiv = document.getElementById("high-scores");
+const title = document.createElement("div");
 title.id = "highscorestitle";
-title.innerText = "HIGH SCROES:";
+title.innerText = "HIGH SCROES";
 mainDiv.append(title);
 
 const score = document.getElementById("Score");
@@ -137,7 +137,7 @@ function createHTMLforHigeScore(HIGHSCORE) {
   $.div = document.createElement("div");
   $.p = document.createElement("p");
   $.p.className = "highscore";
-  $.p.innerHTML = `<span TITLEpv="${HIGHSCORE.DATE}"> ${HIGHSCORE.NAME} - ${HIGHSCORE.SCORE}</span>`;
+  $.p.innerHTML = `<span TITLEpv="${HIGHSCORE.DATE}"> ${HIGHSCORE.NAME} - <p>${HIGHSCORE.SCORE}<p></span>`;
   $.div.append($.p);
   mainDiv.append($.div);
 }
@@ -145,85 +145,102 @@ function createHTMLforHigeScore(HIGHSCORE) {
 function CHECKHIGHSCORE() {
   const element = HIGHSCORE[4].SCORE;
   if (SCORE > element) {
-    var NAME = prompt("enter your name please");
-    var date = new Date();
-    var formats = { year: "numeric", month: "numeric", day: "numeric" };
-    var getDATE = date.toLocaleDateString("fr", formats);
-    HIGHSCORE[4].SCORE = SCORE;
-    HIGHSCORE[4].NAME = NAME;
-    HIGHSCORE[4].DATE = getDATE;
-    // מסדר את המערך בסדר יורד
-    HIGHSCORE.sort((p1, p2) =>
-      p1.SCORE > p2.SCORE ? -1 : p1.SCORE < p2.SCORE ? 1 : 0
-    );
-    ///מעדכו ישר בלי רפרוש
-    HIGHSCORE[4][
-      "DOM"
-    ].p.innerHTML = `<span TITLEpv="${getDATE}"> ${NAME} - ${SCORE}</span>`;
+    swal("enter your name please:", {
+      content: "input",
+    }).then((NAME) => {
+      var date = new Date();
+      var formats = { year: "numeric", month: "numeric", day: "numeric" };
+      var getDATE = date.toLocaleDateString("fr", formats);
+      HIGHSCORE[4].SCORE = SCORE;
+      HIGHSCORE[4].NAME = NAME;
+      HIGHSCORE[4].DATE = getDATE;
+      // מסדר את המערך בסדר יורד
+      HIGHSCORE.sort((p1, p2) =>
+        p1.SCORE > p2.SCORE ? -1 : p1.SCORE < p2.SCORE ? 1 : 0
+      );
+      ///מעדכו ישר בלי רפרוש
+      HIGHSCORE[4][
+        "DOM"
+      ].p.innerHTML = `<span TITLEpv="${getDATE}"> ${NAME} - <p>${SCORE}</p></span>`;
 
-    localStorage.higeScore = JSON.stringify(HIGHSCORE);
+      localStorage.higeScore = JSON.stringify(HIGHSCORE);
+      swal(
+        `NAME: ${NAME}: SCORE: ${SCORE} DATE: ${getDATE} MISSED CLICKED: ${MISSEDCLICKED}`
+      );
+      setTimeout(() => {
+        restartTheGame();
+      }, 1500);
+    });
+    // var NAME = prompt("enter your name please");
+  } else {
+    swal(`SCORE: ${SCORE} MISSED CLICKED: ${MISSEDCLICKED}`);
+    restartTheGame();
   }
 }
 
 function startTheGame() {
-  var start = confirm("ARE YOU READY TO START");
-  if (start) {
-    GAMEOVER = false;
-    SPEEDESCAPEANDROTATION = 0;
-    SUCCESSCLICKS = 0;
-    FAKECLICKS = 0;
+  swal({
+    title: "ARE YOU READY TO START?",
+    text: "Click ok to start the game!",
+    buttons: true,
+    dangerMode: true,
+  }).then((READY) => {
+    if (READY == true) {
+      GAMEOVER = false;
+      SPEEDESCAPEANDROTATION = 0;
+      SUCCESSCLICKS = 0;
+      FAKECLICKS = 0;
 
-    CATCHME.className = "TURNLEVEL1";
-    CLICKTOSTART.innerHTML = `<h1>CATCH ME IF YOU CAN!</h1>`;
+      CATCHME.className = "TURNLEVEL1";
+      CLICKTOSTART.innerHTML = `<h1>CATCH ME IF YOU CAN!</h1>`;
 
-    THESCREENGAME.addEventListener("click", UPDATEFAKECLICKS);
+      THEGAMESCREEN.addEventListener("click", UPDATEFAKECLICKS);
 
-    CATCHME.addEventListener("click", UPDATEINFO);
+      CATCHME.addEventListener("click", UPDATEINFO);
 
-    $("#CatchMe").mouseover(function () {
-      if (GAMEOVER == false) {
-        setTimeout(() => {
-          $(this).css("left", "" + Math.random() * 950 + "px");
-          $(this).css("top", "" + Math.random() * 550 + "px");
-        }, 300 - SPEEDESCAPEANDROTATION);
-      }
-    });
+      $("#CatchMe").mouseover(function () {
+        if (GAMEOVER == false) {
+          setTimeout(() => {
+            $(this).css("left", "" + Math.random() * 950 + "px");
+            $(this).css("top", "" + Math.random() * 550 + "px");
+          }, 300 - SPEEDESCAPEANDROTATION);
+        }
+      });
 
-    var timer = setInterval(function () {
-      if (COUNTTIME == 0) {
-        clearInterval(timer);
-        CATCHME.className = "CatchMe";
-        CLICKTOSTART.innerHTML = `<h1>CLICK TO START</h1>`;
-        GAMEOVER = true;
-
-        setTimeout(() => {
-          alert(
-            `Your Score is ${SCORE} -- Your Missed Clicks ${MISSEDCLICKED} `
-          );
+      var timer = setInterval(function () {
+        if (COUNTTIME == 0) {
+          clearInterval(timer);
+          CATCHME.className = "CatchMe";
+          CLICKTOSTART.innerHTML = `<h1>CLICK TO START</h1>`;
+          GAMEOVER = true;
           $("#CatchMe")
             .css("left", "" + 0 + "px")
             .css("top", "" + 0 + "px");
-          CHECKHIGHSCORE();
+          setTimeout(() => {
+            CHECKHIGHSCORE();
+          }, 800);
+        }
+        INFO[0]["DOM"].timerValue.innerText = COUNTTIME--;
+      }, 1000);
+    } else {
+      swal("come back when your READY!");
+    }
+  });
+  // var start = confirm("ARE YOU READY TO START");
+}
 
-          SCORE = 0;
-          POINTTOTHENEXTLEVEL = 10;
-          LEVEL = 1;
-          MISSEDCLICKED = 0;
-          COUNTTIME = 60;
+function restartTheGame() {
+  SCORE = 0;
+  POINTTOTHENEXTLEVEL = 10;
+  LEVEL = 1;
+  MISSEDCLICKED = 0;
+  COUNTTIME = 60;
 
-          INFO[0]["DOM"].valueScore.innerText = SCORE;
-          INFO[0]["DOM"].valuetitlePointToTheNextLevel.innerText =
-            POINTTOTHENEXTLEVEL;
-          INFO[0]["DOM"].valueLevel.innerText = LEVEL;
-          INFO[0]["DOM"].valueMissedClicks.innerText = MISSEDCLICKED;
-          INFO[0]["DOM"].timerValue.innerText = COUNTTIME;
-        }, 1500);
-      }
-      INFO[0]["DOM"].timerValue.innerText = COUNTTIME--;
-
-      // $("#Timer").html(COUNTTIME--);
-    }, 800);
-  }
+  INFO[0]["DOM"].valueScore.innerText = SCORE;
+  INFO[0]["DOM"].valuetitlePointToTheNextLevel.innerText = POINTTOTHENEXTLEVEL;
+  INFO[0]["DOM"].valueLevel.innerText = LEVEL;
+  INFO[0]["DOM"].valueMissedClicks.innerText = MISSEDCLICKED;
+  INFO[0]["DOM"].timerValue.innerText = COUNTTIME;
 }
 
 function SPEEDESCAPEANDROTATIONE() {
@@ -243,7 +260,7 @@ function SPEEDESCAPEANDROTATIONE() {
     CATCHME.className = "CatchMe";
     clearInterval(timer);
     setTimeout(() => {
-      alert("YOU ARE GANG");
+      swal("YOU ARE GANG");
     }, 1000);
   }
 }

@@ -6,18 +6,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
+    rel="stylesheet"
+  />
+    <style>
+      .header {
+        grid-area: header;
+      }
+      .menu {
+        grid-area: menu;
+      }
+      .main {
+        grid-area: main;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-areas:
+          "header menu"
+          "main menu";
+      }
+    </style>
   </head>
   <body>
-    <header></header>
-    <main>
+    <div class="area">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <!-- <main>
+      <header></header>
       <section id="TheGameScreen"></section>
       <section class="wrapper">
         <div id="wrapperinfo"></div>
         <div id="Main-div"></div>
       </section>
-    </main>
+    </main> -->
+
+    <div class="grid-container">
+      <section class="header">
+        <div id="header-content"></div>
+      </section>
+      <section class="main">
+        <div id="main-content"></div>
+      </section>
+      <section class="menu">
+        <div id="menu-content">
+          <div id="info"></div>
+          <div id="high-scores"></div>
+        </div>
+      </section>
+    </div>
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .item3 {
+        height: 300px;
+      }
+      header {
+        grid-area: header;
+      }
+      #TheGameScreen {
+        grid-area: menu;
+      }
+      .wrapper {
+        grid-area: main;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-areas:
+          "header header header header header menu"
+          "main main main main main menu";
+        gap: 10px;
+        background-color: #2196f3;
+        padding: 10px;
+      }
+      /* .grid-container > div {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 20px 0;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <header></header>
+      <section id="TheGameScreen"></section>
+      <section class="wrapper">
+        <div id="wrapperinfo"></div>
+        <div id="Main-div"></div>
+      </section>    </div>
+  </body>
+</html> -->
