@@ -165,7 +165,7 @@ function CHECKHIGHSCORE() {
 
       localStorage.higeScore = JSON.stringify(HIGHSCORE);
       swal(
-        `NAME: ${NAME}: SCORE: ${SCORE} DATE: ${getDATE} MISSED CLICKED: ${MISSEDCLICKED}`
+        `NAME: ${NAME}. - SCORE: ${SCORE}. - DATE: ${getDATE}. - MISSED CLICKED: ${MISSEDCLICKED}.`
       );
       setTimeout(() => {
         restartTheGame();
@@ -173,7 +173,7 @@ function CHECKHIGHSCORE() {
     });
     // var NAME = prompt("enter your name please");
   } else {
-    swal(`SCORE: ${SCORE} MISSED CLICKED: ${MISSEDCLICKED}`);
+    swal(`SCORE: ${SCORE}. - MISSED CLICKED: ${MISSEDCLICKED}.`);
     restartTheGame();
   }
 }
@@ -218,7 +218,7 @@ function startTheGame() {
             .css("top", "" + 0 + "px");
           setTimeout(() => {
             CHECKHIGHSCORE();
-          }, 800);
+          }, 1500);
         }
         INFO[0]["DOM"].timerValue.innerText = COUNTTIME--;
       }, 1000);
